@@ -1,12 +1,20 @@
-import {NavigationContainer} from '@react-navigation/native';
+import './../gesture-handler';
+
 import React from 'react';
-import {Text} from 'react-native';
+
+import MainAppNavigator from './presentation/routes/MainAppNavigator';
+import {ThemeContextProvider} from './presentation/context/ThemeContext';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Text>Hola!</Text>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <ThemeContextProvider>
+        <MainAppNavigator />
+      </ThemeContextProvider>
+    </QueryClientProvider>
   );
 };
 
